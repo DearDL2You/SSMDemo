@@ -5,6 +5,7 @@ import com.ding.utils.ResponseResult;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jdk.nashorn.internal.ir.debug.JSONWriter;
+import org.apache.log4j.Logger;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 @RestControllerAdvice
 public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
 
+    private static final Logger logger = Logger.getLogger(BaseExceptionhandler.class);
 
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
@@ -30,13 +32,13 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
         ResponseResult responseResult = new ResponseResult(body);
         ObjectMapper objectMapper = new ObjectMapper();
         if(body instanceof ExceptionResult){
-            System.out.println("beforeBodyWrite=Json---不转换---ExceptionResult");
+            logger.info("beforeBodyWrite=Json---不转换---ExceptionResult");
             return  body;
         }
 
 
         try {
-            System.out.println("beforeBodyWrite=Json---转换---ResponseResult");
+            logger.info("beforeBodyWrite=Json---转换---ResponseResult");
             return objectMapper.writeValueAsString(responseResult);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
