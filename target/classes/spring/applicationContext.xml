@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--使用注解驱动
+    （1）< context:annotation-config />：仅能够在已经在已经注册过的bean上面起作用。对于没有在spring容器中注册的bean，它并不能执行任何操作。
+    （2）< context:component-scan base-package="XX.XX"/> ：除了具有上面的功能之外，还具有自动将带有@component,@service,@Repository等注解的对象注册到spring容器中的功能。
+    如果同时使用这两个配置会不会出现重复注入的情况呢？
+    答案：因为< context:annotation-config />和 < context:component-scan>同时存在的时候，前者会被忽略。如@autowire，@resource等注入注解只会被注入一次！
+    参考：https://blog.csdn.net/fox_bert/article/details/80793030
+    -->
+<!--
+    <context:annotation-config></context:annotation-config>   无效果
+-->
+    <!-- Spring容器中注册非@controller注解的Bean
+    但在实际工程中会包括很多配置，我们按照官方推荐根据不同的业务模块来划分不同容器中注册不同类型的Bean：
+    Spring父容器负责所有其他非@Controller注解的Bean的注册，
+    而SpringMVC只负责@Controller注解的Bean的注册，使得他们各负其责、明确边界。配置方式如下
+    -->
+    <context:component-scan base-package="com.ding">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+  <!--  <bean id="baseController" class="com.ding.controller.BaseController">
+    </bean>-->
+
+   </beans>
