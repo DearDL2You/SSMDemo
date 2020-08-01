@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping("/Base")
 public class BaseController {
-    @RequestMapping("action")
+    @RequestMapping("/action")
     public @ResponseBody Object BaseAction(){
         System.out.println("BaseAction");
         char ch=(char)(Math.random()*128);

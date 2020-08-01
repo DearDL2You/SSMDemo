@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 指定数据库连接信息的位置 -->
+<!--
+    <properties resource="mybatis/mysqljdbc.properties"></properties>
+-->
+    <!--设置类别名，默认引入该包下的所有类，这样在写Mapper文件的时候就可以只写entity的类名，而不用写全名那么麻烦 -->
+    <typeAliases>
+        <package name="com.ding.pojo"/>
+    </typeAliases>
+    <!--配置mysql的链接信息，数据从配置文件里面读取，注意名称要对应-->
+    <!--<environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}" />
+                <property name="url" value="${jdbc.url}" />
+                <property name="username" value="${jdbc.username}" />
+                <property name="password" value="${jdbc.password}" />
+            </dataSource>
+        </environment>
+    </environments>
+    &lt;!&ndash; mapping文件路径配置 &ndash;&gt;
+    <mappers>
+        <mapper resource="mybatis/mapping/UserDaoMapper.xml"/>
+    </mappers>-->
+
+</configuration>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--命名空间是对应接口的包名+类名,指定要映射的接口 -->
+<mapper namespace="com.ding.dao.UserDao">
+    <!--id是接口中的方法名，结果类型如没有在mybatis.xml文件中配置别名，则必须使用全名称（包名+类名） -->
+    <select id="getAllUsers" resultType="User">
+        select id,`name`,address from user
+    </select>
+
+    <!--id通过传入id查询用户信息-->
+    <select id="getUserById" parameterType="int"  resultType="User">
+        select id,`name`,address from user where id = #{id}
+    </select>
+
+    <!--id通过传入id查询用户信息-->
+    <insert id="insertUser" parameterType="user" >
+       insert into user(id,`name`,address) value (#{id},#{name},#{address})
+    </insert>
+
+    <update id="updateUser" parameterType="user">
+        update user set address = #{address} where `name` = #{name};
+    </update>
+</mapper>
