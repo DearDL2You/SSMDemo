@@ -25,7 +25,9 @@
     而SpringMVC只负责@Controller注解的Bean的注册，使得他们各负其责、明确边界。配置方式如下
     -->
     <context:component-scan base-package="com.ding">
+<!--
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+-->
     </context:component-scan>
 
   <!--  <bean id="baseController" class="com.ding.controller.BaseController">

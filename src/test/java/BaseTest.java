@@ -3,7 +3,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class BaseTest {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring/spring-mvc.xml");
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring/applicationContext.xml");
         BaseController baseController = (BaseController) applicationContext.getBean("baseController");
         baseController.BaseAction();
     }
